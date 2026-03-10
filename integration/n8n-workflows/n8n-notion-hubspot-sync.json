@@ -1,0 +1,14 @@
+{
+  "name": "PSZ_Core_Sync",
+  "nodes": [
+    {
+      "type": "n8n-nodes-base.googleSheets",
+      "parameters": {"operation": "read", "sheet": "КУБ_Данные"}
+    },
+    {
+      "type": "n8n-nodes-base.notion",
+      "parameters": {"resource": "database", "operation": "create"}
+    }
+  ],
+  "description": "Синхронизация сенсорного контура с Книгой Учета Благ в Notion"
+}
