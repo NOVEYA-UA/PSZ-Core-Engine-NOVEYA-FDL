@@ -1,0 +1,41 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "psz- народный-контроль",
+        "options": {}
+      },
+      "name": "Webhook_In",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "Ты — аналитик ПСЗ. Выдели из сообщения: 1. Суть нарушения. 2. Геолокацию. 3. ФИО (если есть). Классифицируй по ФДЛ: Тезис (норма закона) vs Антитезис (факт нарушения)."
+            }
+          ]
+        }
+      },
+      "name": "FDL_Analyzer",
+      "type": "n8n-nodes-base.openAi",
+      "position": [450, 300]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "sheetId": "ТВОЙ_ID_ТАБЛИЦЫ",
+        "range": "A:E"
+      },
+      "name": "Google_Sheets_KUB",
+      "type": "n8n-nodes-base.googleSheets",
+      "position": [650, 300]
+    }
+  ],
+  "connections": { ... }
+}
